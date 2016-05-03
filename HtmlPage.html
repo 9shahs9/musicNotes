@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Music Notes</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jHtmlArea-0.8.js"></script>
+    <link rel="stylesheet" type="text/css" href="Styles.css" />
+    <link rel="stylesheet" type="text/css" href="jHtmlArea.css" />
+</head>
+<body>
+    <br /><br /><br /><br /><br />
+    <input type="checkbox" id="isNew"/>
+    <b>New Piece</b>
+    &nbsp;&nbsp;&nbsp;
+    <b>Book:</b>
+    <select id="book">
+        <optgroup>
+            <option id="Ob1">Orange Book 1</option>
+            <option id="Bb1">Blue Book 1</option>
+        </optgroup>
+    </select>
+    &nbsp;&nbsp;&nbsp;
+    <b>Page Number:</b>
+    <input id="pageNo" type="text" />
+    &nbsp;&nbsp;&nbsp;<br /><br />
+
+    <div id="formattedNotes" class="fnStyle">
+        <div id="newPiece" class="newpiece"></div>
+        <br />
+        <div id="bookDetails" class="bookdetails"></div>
+    </div>
+
+    <div id="notes" class="fnStyle"></div>
+
+    <script type="text/javascript">
+
+        $('#isNew').click(function () {
+            $('#isNew').toggleClass('newpiece');
+            if($('#isNew').hasClass('newpiece')){
+                $('#newPiece').html('new piece');
+            } else {
+                $('#newPiece').html('');
+            }
+        });
+
+        $('#book').change(bookDetailsUpdate);
+
+        $('#pageNo').change(bookDetailsUpdate);
+
+        function bookDetailsUpdate() {
+            var txt = $('#book option:selected').text() + " page " + $('#pageNo').val();
+            $('#bookDetails').text(txt);
+        }
+
+        $(document).ready(function () {
+            $('#notes').htmlarea();
+        });
+      
+               
+    </script>
+
+
+
+</body>
+</html>
